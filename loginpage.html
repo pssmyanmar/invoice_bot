@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            text-align: center;
+            background-color: black;
+        }
+
+        .login-container img {
+            width: 100px;
+            height: auto;
+        }
+
+        .input-field {
+            display: block;
+            width: 300px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 50px;
+            border: 1px solid white;
+            background-color: white;
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            width: 300px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 50px;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <img src="logo.png" alt="Logo"> <!-- Replace this with your actual logo path -->
+    <input type="text" id="username" class="input-field" placeholder="username">
+    <input type="password" id="password" class="input-field" placeholder="password">
+    <button onclick="login()">Login</button>
+    <p id="error-message" class="error-message"></p>
+</div>
+
+<script>
+    // Usernames and their corresponding passwords
+    const credentials = {
+        'Auld_D3n': 'PssAdmin01',
+        'febdem123': 'PssAdmin02',
+        'aiden_ju': 'PssAdmin03'
+    };
+
+    // Fallback password if the password is incorrect
+    const fallbackPassword = 'Pssmyanmar';
+
+    // Login function
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Check if username exists
+        if (credentials[username]) {
+            // Check if password matches or fallback password is used
+            if (credentials[username] === password || password === fallbackPassword) {
+                alert('Login successful!');
+                // Redirect or do something after login success
+            } else {
+                errorMessage.textContent = 'Incorrect password. Try again!';
+            }
+        } else {
+            errorMessage.textContent = 'Username not found!';
+        }
+    }
+</script>
+
+</body>
+</html>
