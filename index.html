@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .invoice {
+            position: relative;
+            width: 800px;
+            height: 1000px;
+            background: url('Invoice.jpg') no-repeat center;
+            background-size: cover;
+        }
+
+        .input-field {
+            position: absolute;
+            border: none;
+            background: transparent;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* Adjust positioning for each field */
+        #date {
+            top: 150px;
+            left: 500px;
+            width: 200px;
+        }
+
+        #username {
+            top: 200px;
+            left: 500px;
+            width: 200px;
+        }
+
+        #usermail {
+            top: 250px;
+            left: 500px;
+            width: 200px;
+        }
+
+        #enddate {
+            top: 300px;
+            left: 500px;
+            width: 200px;
+        }
+
+        #invoiceid {
+            top: 350px;
+            left: 500px;
+            width: 200px;
+        }
+
+        #payment-method {
+            top: 450px;
+            left: 220px;
+            width: 100px;
+        }
+
+        #paid-amount {
+            top: 450px;
+            left: 620px;
+            width: 100px;
+        }
+
+        #issuer {
+            top: 550px;
+            left: 220px;
+            width: 200px;
+        }
+
+        #note {
+            top: 600px;
+            left: 220px;
+            width: 400px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invoice" id="invoice">
+        <input type="text" id="date" class="input-field" placeholder="DD/MM/YY">
+        <input type="text" id="username" class="input-field" placeholder="MG MG">
+        <input type="text" id="usermail" class="input-field" placeholder="mgmg@home.com">
+        <input type="text" id="enddate" class="input-field" placeholder="DD/MM/YY">
+        <input type="text" id="invoiceid" class="input-field" placeholder="AEIOU123">
+        <input type="text" id="payment-method" class="input-field" placeholder="KBZ Pay">
+        <input type="text" id="paid-amount" class="input-field" placeholder="55000">
+        <input type="text" id="issuer" class="input-field" placeholder="Issuer Name">
+        <input type="text" id="note" class="input-field" placeholder="Enter any note here">
+    </div>
+
+    <button onclick="generatePNG()">Download PNG</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function generatePNG() {
+            const invoice = document.getElementById('invoice');
+            html2canvas(invoice, { scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'invoice.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+
+</body>
+</html>
